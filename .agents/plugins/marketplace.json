@@ -1,0 +1,20 @@
+{
+  "name": "airprompter",
+  "interface": {
+    "displayName": "AirPrompter"
+  },
+  "plugins": [
+    {
+      "name": "airprompter",
+      "source": {
+        "source": "local",
+        "path": "./plugins/airprompter"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

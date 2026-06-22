@@ -1,0 +1,42 @@
+{
+  "name": "airprompter",
+  "version": "0.1.0",
+  "description": "Create, run, and improve AirPrompter workflows from Codex.",
+  "author": {
+    "name": "AirPrompter",
+    "url": "https://airprompter.com"
+  },
+  "homepage": "https://airprompter.com",
+  "repository": "https://github.com/lexerio-seth/prompt-haven",
+  "license": "UNLICENSED",
+  "keywords": [
+    "airprompter",
+    "prompts",
+    "workflows",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AirPrompter",
+    "shortDescription": "Create, run, and improve saved AirPrompter workflows.",
+    "longDescription": "AirPrompter connects Codex to saved workflow guidance. It routes workflow discovery, execution, creation, and updates through the authenticated AirPrompter MCP surface.",
+    "developerName": "AirPrompter",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://airprompter.com",
+    "privacyPolicyURL": "https://airprompter.com/legal/privacy",
+    "termsOfServiceURL": "https://airprompter.com/legal/terms",
+    "defaultPrompt": [
+      "Run my AirPrompter workflow for this task.",
+      "Create an AirPrompter workflow for this process.",
+      "Update my workflow to handle this new step."
+    ],
+    "brandColor": "#F88379",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png"
+  },
+  "mcpServers": "./.mcp.json"
+}
