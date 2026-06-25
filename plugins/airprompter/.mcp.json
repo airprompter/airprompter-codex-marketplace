@@ -2,7 +2,8 @@
   "mcpServers": {
     "airprompter": {
       "type": "http",
-      "url": "https://mcp.airprompter.com/mcp"
+      "url": "https://mcp.airprompter.com/mcp",
+      "oauth_resource": "https://mcp.airprompter.com"
     }
   }
 }
