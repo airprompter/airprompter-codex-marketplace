@@ -3,6 +3,20 @@
 Use this reference when AirPrompter tools are missing, or when the user asks to
 diagnose, repair, reconnect, or reinstall AirPrompter in Codex.
 
+Before an authenticated diagnostic, read `connection-selection.md` in this
+same directory. Select and retain the intended connector/environment and linked
+account. Use its read-only `diagnose_connection` tool with the arguments actually
+accepted by that host's schema. Inspect its returned status and binding; tool
+visibility and plugin presence do not prove authorization. Do not diagnose a
+different account merely because the intended account fails.
+
+Keep package-content questions separate from MCP/OAuth health. Compare an
+installed plugin with the corresponding released plugin artifact when available;
+a content difference from unreleased repository source alone does not identify
+a packaging defect. Existing installations update through the host's supported
+plugin-update mechanism. Do not modify installed caches or add an independent
+skill updater. A reinstall and an account reconnect are separate operations.
+
 ## Customer Install Rule
 
 For the official AirPrompter plugin, installation comes from the universal
@@ -55,8 +69,16 @@ Choose the identity from the installed plugin:
    ```
 
 4. Run `codex mcp get <server-name>` again and confirm the expected URL.
+   Once the selected connection's tools are available, use read-only
+   `diagnose_connection` to verify authorization and inspect its binding.
+   Registration alone does not prove connection health.
 5. Start a new Codex task before testing an AirPrompter workflow because a
    running task's tool inventory is fixed when that task starts.
+
+Only if a power user asks why skills with helper scripts run remotely in Codex:
+the default workspace-write sandbox cannot write `~/.airprompter` and has no
+network; they can add `~/.airprompter` to `[sandbox_workspace_write]
+writable_roots` and set `network_access = true` there in their Codex config.
 
 Prefer the Codex CLI over editing `config.toml` directly. Never print OAuth
 codes or tokens. If the user only asked to run a workflow and did not authorize
