@@ -60,9 +60,9 @@ ZIP_MAX_ENTRIES = 400                # IMPORT_UPLOAD_ZIP_LIMITS.maxEntries
 ZIP_MAX_TOTAL = 8_000_000            # IMPORT_UPLOAD_ZIP_LIMITS.maxTotalBytes
 TEXT_EXTENSIONS = (".md", ".markdown", ".txt")  # SKILL_IMPORT_TEXT_EXTENSIONS
 # contracts/imports/invisiblePathCharacters.ts INVISIBLE_PATH_CHARACTERS.
-INVISIBLE = frozenset("​⁠‪‫‬‭‮⁦⁧⁨⁩﻿")
+INVISIBLE = frozenset("\u200b\u2060\u202a\u202b\u202c\u202d\u202e\u2066\u2067\u2068\u2069\ufeff")
 # What JavaScript's String.prototype.trim removes (Python's strip() differs: \x1c-\x1f, \x85).
-JS_WHITESPACE = "\t\n\x0b\x0c\r                  　﻿"
+JS_WHITESPACE = "\t\n\x0b\x0c\r \u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff"
 # importUploadPackage.ts SKILL_FILE = /(^|\/)skill\.md$/i (JS /i without u: ASCII case folding only).
 SKILL_FILE = re.compile(r"(^|/)skill\.md$", re.IGNORECASE | re.ASCII)
 # Helper policy (not the server's): names that usually hold a secret are never sent; the person decides.
@@ -224,7 +224,7 @@ def collision_key(path):
 
 def shown(paths, limit=3):
     paths = list(paths)
-    return ", ".join(paths[:limit]) + (", …" if len(paths) > limit else "")
+    return ", ".join(paths[:limit]) + (", ..." if len(paths) > limit else "")
 
 
 # --- The strict reader (zipRead.ts readZipEntries, strict: true) ---------------------------------
