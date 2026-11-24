@@ -8,9 +8,12 @@ through this import.
 
 ## Required Behavior
 
+- A skill folder or `.zip` on this computer, on a host that can run shell
+  commands and the bundled helper: use Local Folder Or Zip, below, never
+  inline `files[]`.
 - Use AirPrompter MCP. Do not recreate the skill as a local prompt chain.
-- Prefer `files[]` when the host already has skill markdown.
-- Use `sourceUrl` for a public skill link.
+- Otherwise use `files[]` when the host already has skill markdown, and
+  `sourceUrl` for a public skill link.
 - Call `preview_skill_import` first. Show fitness notes (`importable`,
   `adapted`, or `skipped`) and unresolved references.
 - Import the files as they are: show the preview's notes and instructions
@@ -18,6 +21,42 @@ through this import.
   through the authoring checklist.
 - After the user confirms, call `import_skill` with the same files or URL.
 - For an existing workflow, call `export_workflow_skill` with `workflowId`.
+
+## Local Folder Or Zip
+
+This sends the files without copying them through the conversation. Paths are
+relative to this file; `<target>` is `dev` only for the development connector,
+else `prod`.
+
+1. Run `../scripts/upload --plan --target <target> <folder or .zip>` (no
+   network). `"status":"up_to_date"`: say it already matches their saved copy
+   and stop, unless they asked for another copy: then add `--force` to the
+   run in step 2. An error: pass on its `message` (for example a key file it
+   found) or use inline `files[]`.
+2. Show the person what leaves this computer in one short line: the file
+   count, the total size, and any `leftOut` files (for example "Sending 6
+   files (48 KB); leaving out .env and .git/."). Then call
+   `start_skill_upload({})` (`{ organizationId }` for a Team). With the
+   file-write tool, write `{"token":"<uploadToken>"}` to a new file in the
+   plan's `tokenFolder`, then run `../scripts/upload --token-file
+   <tokenFolder>/<new file> --target <target> <same path>`. Without a usable
+   file-write tool or `tokenFolder`: `printf '%s' '{"token":"<uploadToken>"}'
+   | ../scripts/upload --target <target> <same path>`. Never put the token in
+   arguments, a message or printed output.
+3. `preview_skill_import({ sourceUrl: "<the answer's sourceUrl>" })`, then,
+   after the person confirms, `import_skill` with the same `sourceUrl`.
+
+- Before any `import_skill` call: if `start_skill_upload` is missing (an older
+  server, -32602 or -32603), answers `rate_limited`, or the helper fails,
+  import inline `files[]`; for a large skill, say in one plain line that it
+  will take a little longer. `upload_token_invalid` (expired or used): one new
+  `start_skill_upload`, then inline. Run the helper again only after
+  `"tokenUsed": false`, once; a used token is never sent again.
+- After any `import_skill` call: retry only with the same `sourceUrl`, never
+  inline (that would import it twice).
+- Chat-only hosts (no shell) import inline `files[]`.
+- Pass on the helper's `message`; its `hint` is for you. Never say token,
+  helper or upload link to the person.
 
 ## After A New Save Or Import
 

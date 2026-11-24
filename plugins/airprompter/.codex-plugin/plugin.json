@@ -1,6 +1,6 @@
 {
   "name": "airprompter",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Create, run, and improve AirPrompter workflows from Codex.",
   "author": {
     "name": "AirPrompter",
@@ -18,7 +18,7 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "AirPrompter",
-    "shortDescription": "Create, run, and improve saved AirPrompter workflows.",
+    "shortDescription": "Use prompts and workflows",
     "longDescription": "AirPrompter connects Codex to saved workflow guidance. It routes workflow discovery, execution, creation, and updates through the authenticated AirPrompter MCP surface.",
     "developerName": "AirPrompter",
     "category": "Productivity",
@@ -27,8 +27,9 @@
       "Write"
     ],
     "websiteURL": "https://airprompter.com",
-    "privacyPolicyURL": "https://airprompter.com/legal/privacy",
-    "termsOfServiceURL": "https://airprompter.com/legal/terms",
+    "privacyPolicyURL": "https://airprompter.com/privacy",
+    "termsOfServiceURL": "https://airprompter.com/terms",
+    "supportURL": "https://airprompter.com/docs",
     "defaultPrompt": [
       "Run my AirPrompter workflow for this task.",
       "Create an AirPrompter workflow for this process.",

@@ -42,8 +42,8 @@ have both the plugin and the matching MCP server entry.
 Choose the identity from the installed plugin:
 
 - `airprompter-dev@airprompter-dev` uses server `airprompter_dev`, URL
-  `https://mcp.dev.airprompter.com/mcp`, and OAuth resource
-  `https://mcp.dev.airprompter.com`.
+  `https://mcp.airprompter.dev/mcp`, and OAuth resource
+  `https://mcp.airprompter.dev`.
 - `airprompter@airprompter` uses server `airprompter`, URL
   `https://mcp.airprompter.com/mcp`, and OAuth resource
   `https://mcp.airprompter.com`.

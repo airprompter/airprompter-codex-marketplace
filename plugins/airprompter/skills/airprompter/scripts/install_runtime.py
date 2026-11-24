@@ -33,7 +33,7 @@ MAX_DOWNLOAD = 8_000_000
 MAX_FILES = 264
 HASH = re.compile(r"^[0-9a-f]{64}$")
 TOKEN = re.compile(r"^[A-Za-z0-9_-]{43}$")
-API_ORIGINS = {"prod": "https://api.airprompter.com", "dev": "https://api-dev.airprompter.com"}
+API_ORIGINS = {"prod": "https://api.airprompter.com", "dev": "https://api.airprompter.dev"}
 # Stored-file download pins per target, from the trusted deployment configuration
 # (SSM /<env>/cdk/stack-refs/database/workflow-files/download-domain). Never learned
 # from a workflow, the redemption payload or a signed URL. `dev` is the internal QA
